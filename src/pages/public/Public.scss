@@ -1,0 +1,17 @@
+@use './../../Configs.scss' as configs;
+
+body {
+	&.public {
+		#root {
+			grid-template-rows: 100vh;
+			grid-template-areas: 'main';
+			background-color: configs.$secondary;
+			background-image: url(/src/assets/public-background.svg);
+			background-position: bottom;
+			background-repeat: no-repeat;
+			background-size: contain;
+			height: 100vh;
+			min-height: 600px;
+		}
+	}
+}
