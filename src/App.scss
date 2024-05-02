@@ -1,0 +1,34 @@
+@use './Configs.scss' as configs;
+
+body {
+	color: configs.$body-color;
+	min-width: 100%;
+	min-height: 100vh;
+	margin: 0px;
+	* {
+		box-sizing: border-box;
+	}
+	#root {
+		display: grid;
+		grid-template-columns: 100vw;
+		& > * {
+			width: 100%;
+			min-height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		main {
+			grid-area: main;
+			overflow-y: auto;
+		}
+		footer {
+			grid-area: footer;
+		}
+	}
+
+	a {
+		color: configs.$links-color;
+		text-decoration: none;
+	}
+}

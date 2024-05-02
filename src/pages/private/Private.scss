@@ -1,0 +1,26 @@
+@use './../../Configs.scss' as configs;
+
+body {
+	&.private {
+		#root {
+			grid-template-rows: configs.$private-header-height auto configs.$private-footer-height;
+			grid-template-areas: 'header' 'main' 'footer';
+			background-color: #ffffff;
+			header {
+				grid-area: header;
+				padding: 1.5rem;
+			}
+			main {
+				overflow-y: auto;
+				padding: 1.5rem;
+			}
+			footer {
+				grid-area: footer;
+				background-color: configs.$primary;
+			}
+		}
+	}
+}
+
+.title {
+}

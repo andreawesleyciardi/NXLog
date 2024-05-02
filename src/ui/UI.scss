@@ -1,0 +1,17 @@
+@use './../Configs.scss' as configs;
+
+body {
+	#root {
+		header {
+			// padding: 1.5rem;
+		}
+		footer {
+			padding: 0px 1.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 2rem;
+			font-size: 0.875rem;
+		}
+	}
+}
