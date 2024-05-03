@@ -2,16 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { InputLabel as MuiInputLabel } from '@mui/material';
 
-const FieldLabel = ({ children, name, sx, ...props }) => {
+const FieldLabel = ({ children, name, sx = {}, ...props }) => {
 	return (
-		<MuiInputLabel shrink={false} htmlFor={name} sx={Object.assign({ position: 'relative', transform: 'none', marginBottom: '0.3rem', fontSize: '0.875rem' }, sx)}>
+		<MuiInputLabel shrink={false} htmlFor={name} sx={Object.assign({ position: 'relative', transform: 'none' }, sx)}>
 			{children}
 		</MuiInputLabel>
 	);
-};
-
-FieldLabel.defaultProps = {
-	sx: {},
 };
 
 FieldLabel.propTypes = {

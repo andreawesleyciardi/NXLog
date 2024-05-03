@@ -6,7 +6,7 @@ import { FormControl as MuiFormControl } from '@mui/material';
 
 import { FieldLabel } from './../UI';
 
-const Form = ({ children, defaultValues, method, validationMode, ...props }) => {
+const Form = ({ children, defaultValues = null, method = 'post', validationMode = 'onChange', ...props }) => {
 	const submit = useSubmit();
 	const { register, handleSubmit, control, formState, watch, setValue } = useForm({ mode: validationMode, defaultValues: defaultValues });
 	const extraFormState = useFormState({ control });
@@ -26,12 +26,6 @@ const Form = ({ children, defaultValues, method, validationMode, ...props }) => 
 	);
 };
 
-Form.defaultProps = {
-	defaultValues: null,
-	method: 'post',
-	validationMode: 'onChange',
-};
-
 Form.propTypes = {
 	children: PropTypes.func.isRequired,
 	defaultValues: PropTypes.object,
@@ -41,11 +35,11 @@ Form.propTypes = {
 
 export default Form;
 
-const FormControl = React.forwardRef(({ control, component, disabled, error, fullWidth, label, labelSx, name, required, size, sx, validate, variant, ...props }, ref) => {
+const FormControl = React.forwardRef(({ control, component, disabled = false, error = false, focused = false, fullWidth = false, label, labelSx, name, required = false, size = 'medium', sx = {}, validate, variant = 'standard', ...props }, ref) => {
 	return (
 		<MuiFormControl disabled={disabled} error={error} fullWidth={fullWidth} required={required} size={size} sx={sx} variant={variant}>
 			{label != null && (
-				<FieldLabel shrink={false} htmlFor={name} sx={Object.assign({ position: 'relative', transform: 'none', marginBottom: '0.3rem', fontSize: '0.875rem' }, labelSx)}>
+				<FieldLabel shrink={false} htmlFor={name} sx={Object.assign({ position: 'relative', transform: 'none' }, labelSx)}>
 					{label}
 				</FieldLabel>
 			)}
@@ -53,18 +47,6 @@ const FormControl = React.forwardRef(({ control, component, disabled, error, ful
 		</MuiFormControl>
 	);
 });
-
-FormControl.defaultProps = {
-	disabled: false,
-	focused: false,
-	fullWidth: true,
-	error: false,
-	labelSx: {},
-	required: false,
-	size: 'small',
-	sx: {},
-	variant: 'standard',
-};
 
 FormControl.propTypes = {
 	control: PropTypes.object,

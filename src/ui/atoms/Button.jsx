@@ -4,19 +4,13 @@ import Stack from '@mui/material/Stack';
 import { Button as MuiButton } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-const Button = React.forwardRef(({ as: Component, children, ...props }, ref) => {
+const Button = React.forwardRef(({ as: Component = MuiButton, children, size = 'medium', variant = 'contained', ...props }, ref) => {
 	return (
-		<Component disableElevation {...props} ref={ref}>
+		<Component disableElevation size={size} variant={variant} {...props} ref={ref}>
 			{children}
 		</Component>
 	);
 });
-
-Button.defaultProps = {
-	as: MuiButton,
-	variant: 'contained',
-	size: 'medium',
-};
 
 Button.propTypes = {
 	as: PropTypes.object,
@@ -30,16 +24,12 @@ Button.displayName = 'Button';
 
 export default Button;
 
-const ButtonsStack = ({ children, sx, ...props }) => {
+const ButtonsStack = ({ children, sx = {}, ...props }) => {
 	return (
 		<Stack direction="row" spacing={2} sx={Object.assign({ alignItems: 'center', justifyContent: 'center' }, sx)} {...props}>
 			{children}
 		</Stack>
 	);
-};
-
-ButtonsStack.defaultProps = {
-	sx: {},
 };
 
 ButtonsStack.propTypes = {
@@ -49,17 +39,13 @@ ButtonsStack.propTypes = {
 
 export { ButtonsStack };
 
-const Submit = React.forwardRef(({ children, disabled, extraFormState: { dirtyFields }, formState: { isSubmitting, isValid, isDirty }, ...props }, ref) => {
+const Submit = React.forwardRef(({ children, disabled = false, extraFormState: { dirtyFields }, formState: { isSubmitting, isValid, isDirty }, ...props }, ref) => {
 	return (
 		<Button {...props} type="submit" disabled={Object.keys(dirtyFields).length == 0 || isValid != true || isDirty != true || disabled} loading={isSubmitting} as={LoadingButton} ref={ref}>
 			{children}
 		</Button>
 	);
 });
-
-Submit.defaultProps = {
-	disabled: false,
-};
 
 Submit.propTypes = {
 	children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,

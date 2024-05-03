@@ -3,6 +3,7 @@ import theme from './Theme';
 import Accordion, { AccordionContainer } from './atoms/Accordion';
 import Button, { ButtonsStack, Submit } from './atoms/Button';
 import { CheckBox, CheckBoxBase } from './atoms/CheckRadioBox';
+import Generator, { GeneratorBase } from './atoms/Generator';
 import Input, { InputBase } from './atoms/Input';
 import { FieldLabel } from './atoms/Label';
 import Select, { SelectBase } from './atoms/Select';
@@ -17,6 +18,6 @@ import './UI.scss';
 
 export { theme };
 
-export { Accordion, AccordionContainer, Button, ButtonsStack, CheckBox, CheckBoxBase, Input, InputBase, FieldLabel, Select, SelectBase, Submit, Tooltip };
+export { Accordion, AccordionContainer, Button, ButtonsStack, CheckBox, CheckBoxBase, Generator, GeneratorBase, Input, InputBase, FieldLabel, Select, SelectBase, Submit, Tooltip };
 export { Form, FormControl };
 export { Footer, Header };
