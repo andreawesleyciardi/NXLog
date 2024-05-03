@@ -1,6 +1,7 @@
 @use './Configs.scss' as configs;
 
 body {
+	background-color: configs.$body-backgroundColor;
 	color: configs.$body-color;
 	min-width: 100%;
 	min-height: 100vh;
