@@ -1,55 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FilledInput as MuiFilledInput, Input as MuiInput, OutlinedInput as MuiOutlinedInput } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 import { FormControl } from './../UI';
 
-const CheckBoxBase = React.forwardRef(({ variant, ...props }, ref) => {
-	const Component = variant == 'outlined' ? MuiOutlinedInput : variant == 'filled' ? MuiFilledInput : MuiInput;
-	return (
-		<>
-			<Component {...props} ref={ref} />
-			{/* CHECKBOX */}
-		</>
-	);
+const CheckBoxBase = React.forwardRef(({ label, labelSx = {}, ...props }, ref) => {
+	return <FormControlLabel sx={labelSx} control={<Checkbox {...props} />} label={label} />;
 });
 
-CheckBoxBase.defaultProps = {
-	autoFocus: false,
-	defaultValue: null,
-	disabled: false,
-	error: false,
-	fullWidth: true,
-	id: null,
-	name: null,
-	onChange: null,
-	placeholder: null,
-	readOnly: false,
-	required: false,
-	size: 'small',
-	sx: {},
-	type: 'text',
-	variant: 'outlined',
-};
-
 CheckBoxBase.propTypes = {
-	autoFocus: PropTypes.bool,
-	defaultValue: PropTypes.any,
-	disabled: PropTypes.bool,
-	error: PropTypes.bool,
-	fullWidth: PropTypes.bool,
-	id: PropTypes.string,
-	name: PropTypes.string,
+	checked: PropTypes.bool,
+	label: PropTypes.string,
 	onChange: PropTypes.func,
-	placeholder: PropTypes.string,
-	readOnly: PropTypes.bool,
-	required: PropTypes.bool,
-	size: PropTypes.string,
-	sx: PropTypes.object,
-	type: PropTypes.string,
-	validate: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-	value: PropTypes.string,
-	variant: PropTypes.string,
 };
 
 CheckBoxBase.displayName = 'CheckBoxBase';
@@ -64,10 +26,6 @@ const CheckBox = React.forwardRef(({ autoFocus, control, disabled, formControlSx
 			component={(field) => {
 				return (
 					<CheckBoxBase
-						autoFocus={autoFocus}
-						defaultValue={field.value}
-						disabled={disabled}
-						fullWidth={fullWidth}
 						{...props}
 						name={field.name}
 						onChange={(e) => {
@@ -80,6 +38,8 @@ const CheckBox = React.forwardRef(({ autoFocus, control, disabled, formControlSx
 								onChangedValue(newValue);
 							}
 						}}
+						label={label}
+						labelSx={labelSx}
 						ref={field.ref}
 						required={required}
 						size={size}
@@ -90,8 +50,6 @@ const CheckBox = React.forwardRef(({ autoFocus, control, disabled, formControlSx
 			}}
 			focused={autoFocus}
 			fullWidth={fullWidth}
-			label={label}
-			labelSx={labelSx}
 			name={name}
 			required={required}
 			size={size}

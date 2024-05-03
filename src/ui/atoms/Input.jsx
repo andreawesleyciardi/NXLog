@@ -4,7 +4,7 @@ import { FilledInput as MuiFilledInput, Input as MuiInput, OutlinedInput as MuiO
 
 import { FormControl } from './../UI';
 
-const InputBase = React.forwardRef(({ autoFocus = false, defaultValue = null, disabled = false, error = false, fullWidth = true, id = null, name = null, onChange = null, placeholder = null, readOnly = false, required = false, size = 'small', sx = {}, type = 'text', variant = 'outlined', ...props }, ref) => {
+const InputBase = React.forwardRef(({ autoFocus = false, defaultValue = undefined, disabled = false, error = false, fullWidth = true, id = null, name = null, onChange = null, placeholder = null, readOnly = false, required = false, size = 'small', sx = {}, type = 'text', variant = 'outlined', ...props }, ref) => {
 	const Component = variant == 'outlined' ? MuiOutlinedInput : variant == 'filled' ? MuiFilledInput : MuiInput;
 	return <Component autoFocus={autoFocus} defaultValue={defaultValue} disabled={disabled} error={error} fullWidth={fullWidth} id={id} name={name} onChange={onChange} placeholder={placeholder} readOnly={readOnly} required={required} size={size} sx={sx} type={type} variant={variant} {...props} ref={ref} />;
 });

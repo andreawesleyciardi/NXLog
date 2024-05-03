@@ -15,6 +15,24 @@ const theme = {
 		},
 	},
 	components: {
+		MuiAccordion: {
+			styleOverrides: {
+				root: {
+					boxShadow: 'none',
+					'&::before': {
+						backgroundColor: 'transparent',
+					},
+				},
+				text: {
+					'&:hover': {
+						backgroundColor: 'transparent',
+					},
+					paddingBottom: '0px',
+					paddingTop: '0px',
+					lineHeight: '1.43',
+				},
+			},
+		},
 		MuiButton: {
 			defaultProps: {
 				disableRipple: true,
@@ -36,7 +54,15 @@ const theme = {
 					'&:hover': {
 						backgroundColor: 'transparent',
 					},
+					paddingBottom: '0px',
+					paddingTop: '0px',
+					lineHeight: '1.43',
 				},
+			},
+		},
+		MuiCheckbox: {
+			defaultProps: {
+				disableRipple: true,
 			},
 		},
 		MuiFormLabel: {
@@ -44,6 +70,11 @@ const theme = {
 				root: {
 					marginBottom: '0.5rem',
 				},
+			},
+		},
+		MuiIconButton: {
+			defaultProps: {
+				disableRipple: true,
 			},
 		},
 		MuiInputLabel: {
@@ -58,6 +89,11 @@ const theme = {
 				body2: ({ theme }) => ({
 					color: theme.palette.primary.main,
 				}),
+				button: {
+					fontSize: 16,
+					textTransform: 'none',
+					lineHeight: '1.43',
+				},
 			},
 		},
 	},

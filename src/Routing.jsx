@@ -14,6 +14,7 @@ const Routing = () => {
 
 				<Route path="auth/*" lazy={() => import(`${publicRoot}Public`)}>
 					<Route path="signin" lazy={() => import(`${publicRoot}signin/Signin`)} />
+					<Route path="signup" lazy={() => import(`${publicRoot}signup/Signup`)} />
 				</Route>
 
 				<Route lazy={() => import(`${privateRoot}Private.jsx`)}>
