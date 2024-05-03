@@ -5,3 +5,7 @@ export const copyToClipboard = async (text) => {
 		return false;
 	}
 };
+
+export const timeout = (ms) => {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+};
