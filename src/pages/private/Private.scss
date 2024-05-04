@@ -2,24 +2,67 @@
 
 body {
 	&.private {
+		background-color: #ffffff;
+		* {
+			font-family: sans-serif !important;
+		}
 		#root {
-			grid-template-rows: configs.$private-header-height auto configs.$private-footer-height;
+			grid-template-rows: configs.$private-header-height auto max-content;
 			grid-template-areas: 'header' 'main' 'footer';
+			& > * {
+				width: 100%;
+			}
 			header {
 				grid-area: header;
 				padding: 1.5rem;
 			}
 			main {
 				overflow-y: auto;
-				padding: 1.5rem;
+				padding: 1.5rem 1.5rem 5rem 1.5rem;
+				ul,
+				ol {
+					margin: 0px;
+				}
 			}
 			footer {
 				grid-area: footer;
 				background-color: configs.$primary;
 			}
+			.container {
+				width: 100%;
+				display: flex;
+				margin-left: auto;
+				margin-right: auto;
+			}
 		}
 	}
 }
+
+@media (min-width: 1400px) {
+	body.private #root .container {
+		max-width: 1320px;
+	}
+}
+// @media (min-width: 1200px) {
+// 	body.private #root .container {
+// 		max-width: 1140px;
+// 	}
+// }
+// @media (min-width: 992px) {
+// 	body.private #root .container {
+// 		max-width: 960px;
+// 	}
+// }
+// @media (min-width: 768px) {
+// 	body.private #root .container {
+// 		max-width: 720px;
+// 	}
+// }
+// @media (min-width: 576px) {
+// 	body.private #root .container {
+// 		max-width: 540px;
+// 	}
+// }
 
 .title {
 }

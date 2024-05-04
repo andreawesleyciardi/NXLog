@@ -98,7 +98,6 @@ const theme = {
 		},
 	},
 	typography: {
-		fontFamily: `"Poppins", "Monserrat"`,
 		fontSize: 14,
 		body1: {
 			fontWeight: 400,
@@ -108,6 +107,14 @@ const theme = {
 			fontSize: 16,
 		},
 		button: {
+			fontWeight: 600,
+		},
+		h1: {
+			fontSize: 24,
+			fontWeight: 600,
+		},
+		h3: {
+			fontSize: 18,
 			fontWeight: 600,
 		},
 	},

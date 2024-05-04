@@ -5,7 +5,7 @@ import './Public.scss';
 
 export function Component() {
 	useEffect(() => {
-		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 	}, []);
 
 	useLayoutEffect(() => {

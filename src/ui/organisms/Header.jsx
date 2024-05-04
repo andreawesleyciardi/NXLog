@@ -1,25 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import { Box, Stack, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 // import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 // import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Logout from '@mui/icons-material/Logout';
 
-import { Tooltip } from './../UI';
+import NXLogo from './../../assets/logo.png';
 
 const Header = ({ user, ...props }) => {
 	return (
-		<header>
-			HEADER
+		<header id="header">
+			<div className="container">
+				<Stack direction="row" sx={{ width: '100%', justifyContent: 'space-between' }}>
+					<Stack direction="row">
+						<div className="logo">
+							<img src={NXLogo} />
+						</div>
+						<nav>
+							<ul>
+								<li>
+									<NavLink to="/project">
+										<Typography>Project</Typography>
+									</NavLink>
+								</li>
+								<li>
+									<NavLink to="/developer">
+										<Typography>Andrea Ciardi</Typography>
+									</NavLink>
+								</li>
+							</ul>
+						</nav>
+					</Stack>
+					<Stack direction="row" sx={{ alignItems: 'center', gap: '0.5rem' }}>
+						<Typography className="username">{user.userName}</Typography>
+						<Avatar />
+					</Stack>
+				</Stack>
+			</div>
+
 			{/* Breadcrumbs --> https://reactrouter.com/en/main/hooks/use-matches */}
 			{/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', textAlign: 'center' }}>
 				<Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>[Breadcrumbs]</Box>
@@ -70,14 +95,8 @@ const Header = ({ user, ...props }) => {
 	);
 };
 
-Header.defaultProps = {
-	user: null,
-	// linksRoot: '',
-};
-
 Header.propTypes = {
 	user: PropTypes.object,
-	// linksRoot: PropTypes.string,
 };
 
 export default Header;
