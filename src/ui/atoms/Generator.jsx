@@ -1,47 +1,45 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, AccordionDetails, AccordionSummary, Alert, Button, IconButton, InputAdornment, Slider, Stack, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Button, IconButton, InputAdornment, Slider, Stack, Typography } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { CheckBoxBase, FormControl, InputBase } from './../UI';
 import { copyToClipboard } from './../../services/Services';
 
-const GeneratorBase = React.forwardRef(({ onChange, onCopy, required, ...props }, ref) => {
+const GeneratorBase = React.forwardRef(({ inputRef, name, onChange, onCopy, required, ...props }, ref) => {
 	const [value, setValue] = useState('');
-	const [characterLength, setCharacterLength] = useState(8);
-	const [lowerCase, setLowerCase] = useState(true);
-	const [upperCase, setUpperCase] = useState(false);
-	const [numbers, setNumbers] = useState(false);
-	const [symbols, setSymbols] = useState(false);
+	const [passwordLength, setPasswordLength] = useState(8);
+	const [useLowerCase, setUseLowerCase] = useState(true);
+	const [useUpperCase, setUseUpperCase] = useState(false);
+	const [useNumbers, setUseNumbers] = useState(false);
+	const [useSymbols, setUseSymbols] = useState(false);
 	const [copyStatus, setCopyStatus] = useState(null);
-
-	const inputRef = useRef();
 
 	const reset = () => {
 		setValue('');
 		setCopyStatus(null);
 	};
 
-	const handleCharacterLength = (event, newValue) => {
+	const handlePasswordLength = (event, newValue) => {
 		reset();
-		setCharacterLength(newValue);
+		setPasswordLength(newValue);
 	};
-	const handleLowerCase = () => {
+	const handleUseLowerCase = () => {
 		reset();
-		setLowerCase(!lowerCase);
+		setUseLowerCase(!useLowerCase);
 	};
 	const handleUpperCase = () => {
 		reset();
-		setUpperCase(!upperCase);
+		setUseUpperCase(!useUpperCase);
 	};
-	const handleNumbers = () => {
+	const handleUseNumbers = () => {
 		reset();
-		setNumbers(!numbers);
+		setUseNumbers(!useNumbers);
 	};
-	const handleSymbols = () => {
+	const handleUseSymbols = () => {
 		reset();
-		setSymbols(!symbols);
+		setUseSymbols(!useSymbols);
 	};
 
 	const handleCopy = async () => {
@@ -62,13 +60,21 @@ const GeneratorBase = React.forwardRef(({ onChange, onCopy, required, ...props }
 	}, [value]);
 
 	const generatePassword = () => {
-		// GENERATE
+		let charset = '';
+		let newPassword = '';
+		if (useSymbols) charset += '!@#$%^&*()';
+		if (useNumbers) charset += '0123456789';
+		if (useLowerCase) charset += 'abcdefghijklmnopqrstuvwxyz';
+		if (useUpperCase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		for (let i = 0; i < passwordLength; i++) {
+			newPassword += charset.charAt(Math.floor(Math.random() * charset.length));
+		}
 		reset();
-		setValue(Math.floor(Math.random() * 100).toString());
+		setValue(newPassword);
 	};
 
 	return (
-		<Stack sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+		<Stack sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }} ref={ref}>
 			<InputBase
 				endAdornment={
 					<InputAdornment position="end">
@@ -79,6 +85,7 @@ const GeneratorBase = React.forwardRef(({ onChange, onCopy, required, ...props }
 				}
 				inputProps={{ readOnly: true }}
 				inputRef={inputRef}
+				name={name}
 				onChange={onChange}
 				required={required}
 				value={value}
@@ -88,12 +95,12 @@ const GeneratorBase = React.forwardRef(({ onChange, onCopy, required, ...props }
 					<Typography>Advanced options</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					<Typography>Characters length: {characterLength}</Typography>
-					<Slider step={1} min={6} max={16} defaultValue={8} value={characterLength} aria-label="Password length" onChange={handleCharacterLength} />
-					<CheckBoxBase label="Include Lowercase" defaultChecked={true} value={lowerCase} onChange={handleLowerCase} />
-					<CheckBoxBase label="Include Uppercase" defaultChecked={false} value={upperCase} onChange={handleUpperCase} />
-					<CheckBoxBase label="Include Number" defaultChecked={false} value={numbers} onChange={handleNumbers} />
-					<CheckBoxBase label="Include Symbols" defaultChecked={false} value={symbols} onChange={handleSymbols} />
+					<Typography>Characters length: {passwordLength}</Typography>
+					<Slider step={1} min={6} max={16} defaultValue={8} value={passwordLength} aria-label="Password length" onChange={handlePasswordLength} />
+					<CheckBoxBase label="Include Lowercase" defaultChecked={true} value={useLowerCase} onChange={handleUseLowerCase} disabled={useLowerCase && !useUpperCase && !useNumbers && !useSymbols} />
+					<CheckBoxBase label="Include Uppercase" defaultChecked={false} value={useUpperCase} onChange={handleUpperCase} disabled={!useLowerCase && useUpperCase && !useNumbers && !useSymbols} />
+					<CheckBoxBase label="Include Number" defaultChecked={false} value={useNumbers} onChange={handleUseNumbers} disabled={!useLowerCase && !useUpperCase && useNumbers && !useSymbols} />
+					<CheckBoxBase label="Include Symbols" defaultChecked={false} value={useSymbols} onChange={handleUseSymbols} disabled={!useLowerCase && !useUpperCase && !useNumbers && useSymbols} />
 				</AccordionDetails>
 			</Accordion>
 
@@ -105,6 +112,8 @@ const GeneratorBase = React.forwardRef(({ onChange, onCopy, required, ...props }
 });
 
 GeneratorBase.propTypes = {
+	inputRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+	name: PropTypes.string,
 	onChange: PropTypes.func,
 	onCopy: PropTypes.func,
 	required: PropTypes.bool,
@@ -114,7 +123,7 @@ GeneratorBase.displayName = 'GeneratorBase';
 
 export { GeneratorBase };
 
-const Generator = React.forwardRef(({ control, disabled, formControlSx, fullWidth, label, labelSx, name, onChangedValue, onChangingValue, required, size, sx, validate, variant, ...props }, ref) => {
+const Generator = React.forwardRef(({ control, disabled = false, formControlSx = {}, fullWidth = true, label, labelSx = {}, name, onChangedValue, onChangingValue, required = false, size = 'small', validate, variant = 'outlined', ...props }, ref) => {
 	return (
 		<FormControl
 			disabled={disabled}
@@ -134,11 +143,8 @@ const Generator = React.forwardRef(({ control, disabled, formControlSx, fullWidt
 								onChangedValue(newValue);
 							}
 						}}
-						ref={field.ref}
+						inputRef={field.ref}
 						required={required}
-						size={size}
-						sx={sx}
-						variant={variant}
 					/>
 				);
 			}}
@@ -155,19 +161,6 @@ const Generator = React.forwardRef(({ control, disabled, formControlSx, fullWidt
 	);
 });
 
-Generator.defaultProps = {
-	autoFocus: false,
-	disabled: false,
-	formControlSx: {},
-	fullWidth: true,
-	labelSx: {},
-	required: false,
-	size: 'small',
-	sx: {},
-	type: 'text',
-	variant: 'outlined',
-};
-
 Generator.propTypes = {
 	control: PropTypes.object,
 	disabled: PropTypes.bool,
@@ -181,7 +174,6 @@ Generator.propTypes = {
 	required: PropTypes.bool,
 	size: PropTypes.string,
 	sx: PropTypes.object,
-	type: PropTypes.string,
 	validate: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 	variant: PropTypes.string,
 };

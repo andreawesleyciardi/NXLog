@@ -4,9 +4,9 @@ import { FilledInput as MuiFilledInput, Input as MuiInput, OutlinedInput as MuiO
 
 import { FormControl } from './../UI';
 
-const InputBase = React.forwardRef(({ autoFocus = false, defaultValue = undefined, disabled = false, error = false, fullWidth = true, id = null, name = null, onChange = null, placeholder = null, readOnly = false, required = false, size = 'small', sx = {}, type = 'text', variant = 'outlined', ...props }, ref) => {
+const InputBase = React.forwardRef(({ autoFocus = false, disabled = false, error = false, fullWidth = true, id = null, name = null, onChange = null, placeholder = null, readOnly = false, required = false, size = 'small', sx = {}, type = 'text', variant = 'outlined', ...props }, ref) => {
 	const Component = variant == 'outlined' ? MuiOutlinedInput : variant == 'filled' ? MuiFilledInput : MuiInput;
-	return <Component autoFocus={autoFocus} defaultValue={defaultValue} disabled={disabled} error={error} fullWidth={fullWidth} id={id} name={name} onChange={onChange} placeholder={placeholder} readOnly={readOnly} required={required} size={size} sx={sx} type={type} variant={variant} {...props} ref={ref} />;
+	return <Component autoFocus={autoFocus} disabled={disabled} error={error} fullWidth={fullWidth} id={id} name={name} onChange={onChange} placeholder={placeholder} readOnly={readOnly} required={required} size={size} sx={sx} type={type} variant={variant} {...props} ref={ref} />;
 });
 
 InputBase.propTypes = {
@@ -33,7 +33,7 @@ InputBase.displayName = 'InputBase';
 
 export { InputBase };
 
-const Input = React.forwardRef(({ autoFocus, control, disabled, formControlSx, fullWidth, label, labelSx, name, onChangedValue, onChangingValue, required, size, sx, validate, variant, ...props }, ref) => {
+const Input = React.forwardRef(({ autoFocus = false, control, disabled = false, formControlSx, fullWidth, label, labelSx, name, onChangedValue, onChangingValue, required = false, size, sx, type = 'text', validate, variant = 'outlined', ...props }, ref) => {
 	return (
 		<FormControl
 			disabled={disabled}
@@ -46,6 +46,7 @@ const Input = React.forwardRef(({ autoFocus, control, disabled, formControlSx, f
 						disabled={disabled}
 						fullWidth={fullWidth}
 						{...props}
+						type={type}
 						name={field.name}
 						onChange={(e) => {
 							let newValue = e.target.value;
@@ -79,18 +80,18 @@ const Input = React.forwardRef(({ autoFocus, control, disabled, formControlSx, f
 	);
 });
 
-Input.defaultProps = {
-	autoFocus: false,
-	disabled: false,
-	formControlSx: {},
-	fullWidth: true,
-	labelSx: {},
-	required: false,
-	size: 'small',
-	sx: {},
-	type: 'text',
-	variant: 'outlined',
-};
+// Input.defaultProps = {
+// 	autoFocus: false,
+// 	disabled: false,
+// 	formControlSx: {},
+// 	fullWidth: true,
+// 	labelSx: {},
+// 	required: false,
+// 	size: 'small',
+// 	sx: {},
+// 	type: 'text',
+// 	variant: 'outlined',
+// };
 
 Input.propTypes = {
 	autoFocus: PropTypes.bool,
