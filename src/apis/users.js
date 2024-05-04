@@ -44,6 +44,8 @@ export const details = () =>
 			if (user != null && typeof user != 'object') {
 				user = JSON.parse(user);
 				return { status: 200, data: user };
+			} else {
+				return { status: 404 };
 			}
 		},
 	});
