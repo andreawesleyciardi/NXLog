@@ -9,12 +9,16 @@ import { users } from './../../../apis/Apis';
 
 export async function action({ request }) {
 	const formData = Object.fromEntries(await request.formData());
-	const response = await queryClient.fetchQuery(users.signin(formData));
-	if (response.status != 200) {
+	if (formData.userName !== '' && formData.password !== '') {
+		const response = await queryClient.fetchQuery(users.signin(formData));
+		if (response.status != 200) {
+			return false;
+		}
+		await queryClient.invalidateQueries({ queryKey: ['user', 'details'] });
+		return redirect('/project');
+	} else {
 		return false;
 	}
-	await queryClient.invalidateQueries({ queryKey: ['user', 'details'] });
-	return redirect('/project');
 }
 
 export function Component() {
