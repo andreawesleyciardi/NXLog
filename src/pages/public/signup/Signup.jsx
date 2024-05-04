@@ -9,11 +9,15 @@ import { users } from './../../../apis/Apis';
 
 export async function action({ request }) {
 	const formData = Object.fromEntries(await request.formData());
-	const response = await queryClient.fetchQuery(users.signup(formData));
-	if (response.status != 200) {
+	if (formData.userName !== '' && formData.password !== '') {
+		const response = await queryClient.fetchQuery(users.signup(formData));
+		if (response.status != 200) {
+			return false;
+		}
+		return redirect('/auth/signin');
+	} else {
 		return false;
 	}
-	return redirect('/auth/signin');
 }
 
 export function Component() {
