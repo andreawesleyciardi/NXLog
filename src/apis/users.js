@@ -6,13 +6,13 @@ export const signin = (data) =>
 	queryOptions({
 		queryKey: ['user', 'signin'],
 		queryFn: async () => {
-			await timeout(2000);
+			await timeout(1000);
 			let users = localStorage.getItem('users') ?? {};
 			if (typeof users != 'object') {
 				users = JSON.parse(users);
 			}
 			if (users?.[data.userName] !== undefined && users[data.userName] === data.password) {
-				localStorage.setItem('user', { userName: data.userName, password: data.password });
+				localStorage.setItem('user', JSON.stringify({ userName: data.userName, password: data.password }));
 				return { status: 200 };
 			} else {
 				return { status: 404 };
@@ -24,7 +24,7 @@ export const signup = (data) =>
 	queryOptions({
 		queryKey: ['user', 'signup'],
 		queryFn: async () => {
-			await timeout(2000);
+			await timeout(1000);
 			let users = localStorage.getItem('users') ?? {};
 			if (typeof users != 'object') {
 				users = JSON.parse(users);
@@ -39,6 +39,7 @@ export const details = () =>
 	queryOptions({
 		queryKey: ['user', 'details'],
 		queryFn: async () => {
+			await timeout(1000);
 			let user = localStorage.getItem('user');
 			if (user != null && typeof user != 'object') {
 				user = JSON.parse(user);

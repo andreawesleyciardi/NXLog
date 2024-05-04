@@ -1,17 +1,82 @@
 @use './../Configs.scss' as configs;
 
-body {
-	#root {
-		header {
-			// padding: 1.5rem;
-		}
-		footer {
-			padding: 0px 1.5rem;
+#header {
+	height: configs.$header-height;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		.logo {
+			max-width: 122px;
 			display: flex;
 			align-items: center;
-			justify-content: center;
-			gap: 2rem;
-			font-size: 0.875rem;
+			img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+		}
+		nav {
+			padding-left: 0.5rem 0px 0.5rem 20px;
+			ul {
+				list-style-type: none;
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				li {
+					padding: 0px 19px;
+					text-transform: uppercase;
+					a {
+						&:hover,
+						&.active {
+							p {
+								font-weight: 600;
+							}
+						}
+						p {
+							font-size: 11px;
+						}
+					}
+				}
+			}
+		}
+		.username {
+			font-size: 14px;
+			margin-right: 10px;
+		}
+		p {
+			color: #08386b;
+			font-weight: 500;
+		}
+	}
+}
+
+#footer {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 2rem;
+	padding: 2rem 1.5rem;
+	font-size: 0.875rem;
+	.container {
+		align-items: center;
+		justify-content: space-between;
+		.logo {
+			max-width: 150px;
+			display: flex;
+			align-items: center;
+			img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+		}
+		p {
+			color: #ffffff;
+			font-size: 11px;
 		}
 	}
 }

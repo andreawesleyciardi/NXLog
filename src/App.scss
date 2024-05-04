@@ -1,7 +1,6 @@
 @use './Configs.scss' as configs;
 
 body {
-	background-color: configs.$body-backgroundColor;
 	color: configs.$body-color;
 	min-width: 100%;
 	min-height: 100vh;
@@ -10,21 +9,13 @@ body {
 		box-sizing: border-box;
 	}
 	#root {
+		height: 100%;
+		min-height: 100vh;
 		display: grid;
 		grid-template-columns: 100vw;
-		& > * {
-			width: 100%;
-			min-height: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
 		main {
 			grid-area: main;
 			overflow-y: auto;
-		}
-		footer {
-			grid-area: footer;
 		}
 	}
 
