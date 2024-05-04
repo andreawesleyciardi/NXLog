@@ -39,8 +39,19 @@ const Header = ({ user, ...props }) => {
 						</nav>
 					</Stack>
 					<Stack direction="row" sx={{ alignItems: 'center', gap: '0.5rem' }}>
-						<Typography className="username">{user.userName}</Typography>
-						<Avatar />
+						<Stack direction="row" sx={{ alignItems: 'center', gap: '0.5rem' }}>
+							<Typography className="username">{user.userName}</Typography>
+							<Avatar />
+						</Stack>
+						<nav>
+							<ul>
+								<li>
+									<NavLink to="/auth/signin">
+										<Typography>Logout</Typography>
+									</NavLink>
+								</li>
+							</ul>
+						</nav>
 					</Stack>
 				</Stack>
 			</div>

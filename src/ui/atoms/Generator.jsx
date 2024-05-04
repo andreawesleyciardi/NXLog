@@ -95,12 +95,14 @@ const GeneratorBase = React.forwardRef(({ inputRef, name, onChange, onCopy, requ
 					<Typography>Advanced options</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
-					<Typography>Characters length: {passwordLength}</Typography>
-					<Slider step={1} min={6} max={16} defaultValue={8} value={passwordLength} aria-label="Password length" onChange={handlePasswordLength} />
-					<CheckBoxBase label="Include Lowercase" defaultChecked={true} value={useLowerCase} onChange={handleUseLowerCase} disabled={useLowerCase && !useUpperCase && !useNumbers && !useSymbols} />
-					<CheckBoxBase label="Include Uppercase" defaultChecked={false} value={useUpperCase} onChange={handleUpperCase} disabled={!useLowerCase && useUpperCase && !useNumbers && !useSymbols} />
-					<CheckBoxBase label="Include Number" defaultChecked={false} value={useNumbers} onChange={handleUseNumbers} disabled={!useLowerCase && !useUpperCase && useNumbers && !useSymbols} />
-					<CheckBoxBase label="Include Symbols" defaultChecked={false} value={useSymbols} onChange={handleUseSymbols} disabled={!useLowerCase && !useUpperCase && !useNumbers && useSymbols} />
+					<Stack>
+						<Typography>Characters length: {passwordLength}</Typography>
+						<Slider step={1} min={6} max={16} defaultValue={8} value={passwordLength} aria-label="Password length" onChange={handlePasswordLength} />
+						<CheckBoxBase label="Include Lowercase" defaultChecked={true} value={useLowerCase} onChange={handleUseLowerCase} disabled={useLowerCase && !useUpperCase && !useNumbers && !useSymbols} />
+						<CheckBoxBase label="Include Uppercase" defaultChecked={false} value={useUpperCase} onChange={handleUpperCase} disabled={!useLowerCase && useUpperCase && !useNumbers && !useSymbols} />
+						<CheckBoxBase label="Include Number" defaultChecked={false} value={useNumbers} onChange={handleUseNumbers} disabled={!useLowerCase && !useUpperCase && useNumbers && !useSymbols} />
+						<CheckBoxBase label="Include Symbols" defaultChecked={false} value={useSymbols} onChange={handleUseSymbols} disabled={!useLowerCase && !useUpperCase && !useNumbers && useSymbols} />
+					</Stack>
 				</AccordionDetails>
 			</Accordion>
 
