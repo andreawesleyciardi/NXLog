@@ -7,7 +7,7 @@ const Footer = () => {
 		<footer id="footer">
 			<div className="container">
 				<div className="logo">
-					<img src={LogoFooter} />
+					<img src={LogoFooter} alt="logo" />
 				</div>
 				<Typography>© Copyright 2024 NXLog Ltd.</Typography>
 			</div>

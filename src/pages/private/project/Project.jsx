@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
 export function Component() {
 	return (
@@ -16,10 +16,21 @@ export function Component() {
 						Input (type range) for selecting character length for the password.
 						<br />
 						Inputs (type checkbox) for selecting different password generator options:
-						<ul>
-							<li>`Include Lowercase`</li> <li>`Include Uppercase`</li> <li>`Include Numbers`</li> <li>`Include Symbols`</li>
-						</ul>
 					</Typography>
+					<ul>
+						<li>
+							<Typography variant="body1">`Include Lowercase`</Typography>
+						</li>
+						<li>
+							<Typography variant="body1">`Include Uppercase`</Typography>
+						</li>
+						<li>
+							<Typography variant="body1">`Include Numbers`</Typography>
+						</li>
+						<li>
+							<Typography variant="body1">`Include Symbols`</Typography>
+						</li>
+					</ul>
 				</Stack>
 				<Typography variant="body1">
 					At least on of the options above should be selected, so user can`t unselect all of them.
@@ -31,34 +42,46 @@ export function Component() {
 					<br />
 					Every time you click `Generate` button - new password should be generated based on selected parameters.
 				</Typography>
-				<Typography variant="body1">
-					Images for better understanding of what should be done:
+				<Stack>
+					<Typography variant="body1">Images for better understanding of what should be done:</Typography>
 					<ul>
 						<li>
-							<a href="https://prnt.sc/5aORmPCsZgA3" target="_blank" style={{ marginRight: '10px', fontStyle: 'italic' }}>
-								https://prnt.sc/5aORmPCsZgA3
-							</a>
-							default view
+							<Typography variant="body1">
+								<a href="https://prnt.sc/5aORmPCsZgA3" target="_blank" style={{ marginRight: '10px', fontStyle: 'italic' }}>
+									https://prnt.sc/5aORmPCsZgA3
+								</a>
+								default view
+							</Typography>
 						</li>
 						<li>
-							<a href="https://prnt.sc/X3LB_0lV52tr" target="_blank" style={{ marginRight: '10px', fontStyle: 'italic' }}>
-								https://prnt.sc/X3LB_0lV52tr
-							</a>
-							generated password using `Lowercase` and `Number` filters + character length set to 10.
+							<Typography variant="body1">
+								<a href="https://prnt.sc/X3LB_0lV52tr" target="_blank" style={{ marginRight: '10px', fontStyle: 'italic' }}>
+									https://prnt.sc/X3LB_0lV52tr
+								</a>
+								generated password using `Lowercase` and `Number` filters + character length set to 10.
+							</Typography>
 						</li>
 					</ul>
-				</Typography>
+				</Stack>
 				<Stack spacing={2}>
 					<Typography variant="h3">Acceptance criteria</Typography>
-					<Typography variant="body1">
-						<ol>
-							<li>All functionality from the description above is done</li>
-							<li>Use React hooks for internal component state (useState)</li>
-							<li>Use Functional component type</li>
-							<li>Ideally implement it using `React create app` or any other way you prefer</li>
-							<li>Would be nice to add some `handy` and `nice` styling using SASS/SCSS</li>
-						</ol>
-					</Typography>
+					<ol>
+						<li>
+							<Typography variant="body1">All functionality from the description above is done</Typography>
+						</li>
+						<li>
+							<Typography variant="body1">Use React hooks for internal component state (useState)</Typography>
+						</li>
+						<li>
+							<Typography variant="body1">Use Functional component type</Typography>
+						</li>
+						<li>
+							<Typography variant="body1">Ideally implement it using `React create app` or any other way you prefer</Typography>
+						</li>
+						<li>
+							<Typography variant="body1">Would be nice to add some `handy` and `nice` styling using SASS/SCSS</Typography>
+						</li>
+					</ol>
 				</Stack>
 			</Stack>
 		</div>

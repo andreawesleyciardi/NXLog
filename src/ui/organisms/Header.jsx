@@ -21,7 +21,7 @@ const Header = ({ user, ...props }) => {
 				<Stack direction="row" sx={{ width: '100%', justifyContent: 'space-between' }}>
 					<Stack direction="row">
 						<div className="logo">
-							<img src={NXLogo} />
+							<img src={NXLogo} alt="logo" />
 						</div>
 						<nav>
 							<ul>

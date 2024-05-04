@@ -113,6 +113,10 @@ const theme = {
 			fontSize: 24,
 			fontWeight: 600,
 		},
+		h2: {
+			fontSize: 24,
+			fontWeight: 600,
+		},
 		h3: {
 			fontSize: 18,
 			fontWeight: 600,
